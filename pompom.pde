@@ -1,18 +1,25 @@
 
 boolean autoPom = false;
 boolean dropPom = false;
-boolean moduloPom = false; 
+boolean moduloPom = true; 
 
 float dropX = 0;
 float dropY = 0;
 float dropW = 0;
 
+
+// modulo mode variables
+
+
+
 void setup() {
-  //size(1000, 1000);
+  //size(800, 800);
   fullScreen();
 
-  background(255);
-  drawInstructions();
+  frameRate(12);
+
+  background(200);
+  //drawInstructions();
 
   dropX = 0;
   dropY = height;
@@ -21,9 +28,14 @@ void setup() {
 
 
 void draw() {
-  
+
   if (moduloPom) {
-    
+
+    if (frameCount%16 == 0) {
+      background(200);
+    }
+
+    drawPomPom(map(noise(frameCount), 0, 1, 0, width), map(noise(frameCount*19.23), 0, 1, 0, height));
   }
 
   if (autoPom) {
@@ -66,9 +78,9 @@ void keyPressed() {
   } else if (key == 'd') {
     dropPom = !dropPom;
   } else if (key == ' ') {
-   drawPomPom(random(width), random(height));
+    drawPomPom(random(width), random(height));
   } else if (key == 'm') {
-   moduloPom = !moduloPom;
+    moduloPom = !moduloPom;
   }
 }
 
