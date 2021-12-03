@@ -1,7 +1,8 @@
 
 boolean autoPom = false;
 boolean dropPom = false;
-boolean moduloPom = true; 
+boolean moduloPom = false; 
+boolean instaPom = true;
 
 float dropX = 0;
 float dropY = 0;
@@ -13,12 +14,12 @@ float dropW = 0;
 
 
 void setup() {
-  //size(800, 800);
-  fullScreen();
+  size(800, 800);
+  //fullScreen();
 
   frameRate(12);
 
-  background(200);
+  background(255);
   //drawInstructions();
 
   dropX = 0;
@@ -28,6 +29,24 @@ void setup() {
 
 
 void draw() {
+
+  if (instaPom) {
+
+    float angle = random(TWO_PI);
+    float radius = random(300);
+
+    drawPomPom(width/2 + radius * cos(angle), height/2 + radius * sin(angle));
+
+    angle = random(TWO_PI);
+    radius = random(300);
+
+    drawPomPom(width/2 + radius * cos(angle), height/2 + radius * sin(angle));
+
+    saveFrame("pom-pom-########.png");
+
+    if (frameCount > 2000) exit();
+  }
+
 
   if (moduloPom) {
 
